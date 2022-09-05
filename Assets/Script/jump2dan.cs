@@ -20,7 +20,7 @@ public class jump2dan : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "ground")
+        if (collision.gameObject.tag == "Ground")
         {
             jumpCount = 0;
         }
