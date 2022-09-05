@@ -1,51 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
  
 public class GrenadeScript : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private float desroytime;
-    // Start is called before the first frame update
-    void Start()
+
+    private SameTimeExplosionCount _sameTimeExplosionCount;
+    
+    private void Start()
     {
+        _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
         Invoke("Explode", 1.5f); // グレネードが作られてから1.5秒後に爆発させる
     }
  
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
- 
+
     void Explode()
     {
-        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy"); //「Cube」タグのついたオブジェクトを全て検索して配列にいれる
-        
-        if (enemys.Length == 0) return; // 「Cube」タグがついたオブジェクトがなければ何もしない。
- 
-        foreach (GameObject cube in enemys) // 配列に入れた一つひとつのオブジェクト
+        // 爆発対象のチキンを取得
+        var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy")
+            .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= range)
+            .ToList();
+
+        if (explodedChicken.Count == 0) return; // リストの要素が 0 の場合は何もしない
+
+        _sameTimeExplosionCount.ShowText(explodedChicken.Count);
+
+        foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
         {
-            if (Vector3.Distance(cube.transform.position,transform.position)<=range)
+            var rb = chicken.GetComponent<Rigidbody>();
+            if (rb != null) // Rigidbodyがあれば、グレネードを中心とした爆発の力を加える
             {
-                if (cube.GetComponent<Rigidbody>()) // Rigidbodyがあれば、グレネードを中心とした爆発の力を加える
-                {
-                    cube.GetComponent<Rigidbody>().AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
-                    Destroy(cube, desroytime);
-                }
+                rb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
+                Destroy(chicken, desroytime);
             }
         }
-        
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player"); 
-        
-        if (players.Length == 0) return;
- 
-        foreach (GameObject Player in players)
+
+        var player = GameObject.FindGameObjectWithTag("Player");
+        var playerRb = player.GetComponent<Rigidbody>();
+        if (playerRb != null)
         {
-            if (Player.GetComponent<Rigidbody>())
-            {
-                Player.GetComponent<Rigidbody>().AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
-            }
+            playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
         }
     }
 }
