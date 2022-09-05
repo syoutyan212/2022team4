@@ -4,71 +4,70 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    //敵プレハブ
-    public GameObject enemyPrefab;
-    //時間間隔の最小値
-    public float minTime = 2f;
-    //時間間隔の最大値
-    public float maxTime = 5f;
-    //X座標の最小値
-    public float xMinPosition = -10f;
-    //X座標の最大値
-    public float xMaxPosition = 10f;
-    //Y座標の最小値
-    public float yMinPosition = 0f;
-    //Y座標の最大値
-    public float yMaxPosition = 10f;
-    //Z座標の最小値
-    public float zMinPosition = 10f;
-    //Z座標の最大値
-    public float zMaxPosition = 20f;
-    //敵生成時間間隔
-    private float interval;
-    //経過時間
-    private float time = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //時間間隔を決定する
-        interval = GetRandomTime();
-    }
+    public bool spawnEnabled = false;
 
-    // Update is called once per frame
+    [SerializeField]
+    int maxEnemies = 10;
+    [SerializeField]
+    float minPositionX = -3;
+    [SerializeField]
+    float maxPositonX = 3;
+    [SerializeField]
+    float minSpawnInterval = 1;
+    [SerializeField]
+    float maxSpawnInterval = 3;
+    [SerializeField]
+    GameObject[] enemyPrefabs;
+
+    bool spawning = false;
+
     void Update()
     {
-        //時間計測
-        time += Time.deltaTime;
-
-        //経過時間が生成時間になったとき(生成時間より大きくなったとき)
-        if(time > interval)
+        if (spawnEnabled)
         {
-            //enemyをインスタンス化する(生成する)
-            GameObject enemy = Instantiate(enemyPrefab);
-            //生成した敵の位置をランダムに設定する
-            enemy.transform.position = GetRandomPosition();
-            //経過時間を初期化して再度時間計測を始める
-            time = 0f;
-            //次に発生する時間間隔を決定する
-            interval = GetRandomTime();
+            StartCoroutine(SpawnTimer());
         }
     }
 
-    //ランダムな時間を生成する関数
-    private float GetRandomTime()
+    IEnumerator SpawnTimer()
     {
-        return Random.Range(minTime, maxTime);
+        if (!spawning)
+        {
+            if (SpawnEnemy())
+            {
+                spawning = true;
+
+                float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
+                yield return new WaitForSeconds(interval);
+
+                spawning = false;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        yield return null;
     }
 
-    //ランダムな位置を生成する関数
-    private Vector3 GetRandomPosition()
+    bool SpawnEnemy()
     {
-        //それぞれの座標をランダムに生成する
-        float x = Random.Range(xMinPosition, xMaxPosition);
-        float y = Random.Range(yMinPosition, yMaxPosition);
-        float z = Random.Range(zMinPosition, zMaxPosition);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //Vector3型のPositionを返す
-        return new Vector3(x,y,z);
+        if (enemies.Length >= maxEnemies)
+        {
+            return false;
+        }
+        else
+        {
+            int choosedIndex = Random.Range(0, enemyPrefabs.Length);
+            float diffPositionX = Random.Range(minPositionX, maxPositonX);
+            Vector3 position = new Vector3(transform.position.x + diffPositionX, transform.position.y, transform.position.z);
+            Instantiate(enemyPrefabs[choosedIndex], position, Quaternion.identity);
+
+            return true;
+        }
     }
 }
