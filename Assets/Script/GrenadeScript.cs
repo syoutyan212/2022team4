@@ -20,11 +20,11 @@ public class GrenadeScript : MonoBehaviour
  
     void Explode()
     {
-        GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube"); //「Cube」タグのついたオブジェクトを全て検索して配列にいれる
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy"); //「Cube」タグのついたオブジェクトを全て検索して配列にいれる
         
-        if (cubes.Length == 0) return; // 「Cube」タグがついたオブジェクトがなければ何もしない。
+        if (enemys.Length == 0) return; // 「Cube」タグがついたオブジェクトがなければ何もしない。
  
-        foreach (GameObject cube in cubes) // 配列に入れた一つひとつのオブジェクト
+        foreach (GameObject cube in enemys) // 配列に入れた一つひとつのオブジェクト
         {
             if (Vector3.Distance(cube.transform.position,transform.position)<=range)
             {
