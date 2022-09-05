@@ -6,10 +6,12 @@ public class GrenadeScript : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private float desroytime;
 
+    private ScoreManager _scoreManager;
     private SameTimeExplosionCount _sameTimeExplosionCount;
     
     private void Start()
     {
+        _scoreManager = ScoreManager.Instance;
         _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
         Invoke("Explode", 1.5f); // グレネードが作られてから1.5秒後に爆発させる
     }
@@ -28,7 +30,8 @@ public class GrenadeScript : MonoBehaviour
 
         if (explodedChicken.Count == 0) return; // リストの要素が 0 の場合は何もしない
 
-        _sameTimeExplosionCount.ShowText(explodedChicken.Count);
+        _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
+        _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
 
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
         {
