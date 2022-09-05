@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class countdown : MonoBehaviour
+public class Countdown : MonoBehaviour
 {
-    public float Countdown = 1.0f;
-    public Text timeText;
+    public float countdown = 180.0f;
+    private Text timeText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeText = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Countdown -= Time.deltaTime;
-        timeText.text = Countdown.ToString("f1") + "�b";
+        countdown -= Time.deltaTime;
+        timeText.text = countdown.ToString("f1") + "秒";
 
-        if (Countdown <= 0)
+        if (countdown <= 0)
         {
-            timeText.text = "�I��";
+            timeText.text = "時間になりました！";
         }
     }
 }
