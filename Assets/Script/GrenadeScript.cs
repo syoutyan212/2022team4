@@ -13,7 +13,7 @@ public class GrenadeScript : MonoBehaviour
     {
         _scoreManager = ScoreManager.Instance;
         _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
-        Invoke("Explode", 1.5f); // グレネードが作られてから1.5秒後に爆発させる
+        Invoke("Explode", 5); // グレネードが作られてから1.5秒後に爆発させる
     }
  
     private void Update()
