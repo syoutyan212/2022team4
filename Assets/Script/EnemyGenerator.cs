@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] private Transform[] waypoints;
+    [SerializeField] private Transform central;
     public bool spawnEnabled = false;
 
     [SerializeField]
@@ -66,9 +66,8 @@ public class EnemyGenerator : MonoBehaviour
             float diffPositionX = Random.Range(minPositionX, maxPositonX);
             Vector3 position = new Vector3(transform.position.x + diffPositionX, transform.position.y, transform.position.z);
             GameObject Enemy = Instantiate(enemyPrefabs[choosedIndex], position, Quaternion.identity);
-            WaypointPatrol waypointPatrol = Enemy.GetComponent<WaypointPatrol>();
-            waypointPatrol.waypoints = waypoints;
-            waypointPatrol.SetinitialDestination();
+            RandomMove randomMove = Enemy.GetComponent<RandomMove>();
+            randomMove.central = central;
             return true;
         }
     }

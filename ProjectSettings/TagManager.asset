@@ -8,6 +8,7 @@ TagManager:
   - Cube
   - Enemy
   - Spawner
+  - Bait
   layers:
   - Default
   - TransparentFX

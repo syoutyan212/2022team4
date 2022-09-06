@@ -307,7 +307,8 @@ GameObject:
   - component: {fileID: 5567847298340691065}
   - component: {fileID: -7578424667118996738}
   - component: {fileID: -4516299278467426132}
-  - component: {fileID: 2297954991285780860}
+  - component: {fileID: 5870927711901587070}
+  - component: {fileID: 8219677851274674681}
   m_Layer: 0
   m_Name: Toon Chicken
   m_TagString: Enemy
@@ -406,7 +407,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2297954991285780860
+--- !u!114 &5870927711901587070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,10 +416,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1311290861401530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f71eca71583ca4b93d7437d28fe2b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 02de6f99f72d4754ab54ea5878f84b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  destPoint: 0
+  trackingRange: 15
+  quitRange: 20
+  tracking: 1
+--- !u!114 &8219677851274674681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311290861401530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69164ae1a585bf41877e5b943376546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  central: {fileID: 0}
+  radius: 150
+  waitTime: 1
+  time: 0
 --- !u!1 &1325880688823160
 GameObject:
   m_ObjectHideFlags: 0
