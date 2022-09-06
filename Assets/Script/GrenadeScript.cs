@@ -10,11 +10,13 @@ public class GrenadeScript : MonoBehaviour
 
     private ScoreManager _scoreManager;
     private SameTimeExplosionCount _sameTimeExplosionCount;
+    private PlayerExplosionPoint _playerExplosionPoint;
     
     private void Start()
     {
         _scoreManager = ScoreManager.Instance;
         _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
+        _playerExplosionPoint = GameObject.FindWithTag("Player").GetComponent<PlayerExplosionPoint>();
         Invoke("Explode", 5); // グレネードが作られてから1.5秒後に爆発させる
         StartCoroutine(startbait());
     }
@@ -48,6 +50,15 @@ public class GrenadeScript : MonoBehaviour
         if (explodedChicken.Count == 0) return; // リストの要素が 0 の場合は何もしない
 
         _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
+        // 同時爆発数分、爆発ポイントを加算
+        if (_playerExplosionPoint.ExplosionPoint + explodedChicken.Count >= PlayerExplosionPoint.MaxExplosionPoint)
+        {
+            _playerExplosionPoint.ExplosionPoint = PlayerExplosionPoint.MaxExplosionPoint;
+        }
+        else
+        {
+            _playerExplosionPoint.ExplosionPoint += explodedChicken.Count;
+        }
         _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
 
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
