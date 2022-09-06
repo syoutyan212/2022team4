@@ -114,7 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
-  desroytime: 2.5
+  baitrange: 1000
+  desroytime: 0.5
 --- !u!54 &6951805118078560355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -143,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173bfc2544c30cd4ba4d974ac2fc1a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteTime: 10
+  deleteTime: 5

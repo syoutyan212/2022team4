@@ -1,9 +1,11 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
  
 public class GrenadeScript : MonoBehaviour
 {
     [SerializeField] private float range;
+    [SerializeField] private float baitrange;
     [SerializeField] private float desroytime;
 
     private ScoreManager _scoreManager;
@@ -14,8 +16,23 @@ public class GrenadeScript : MonoBehaviour
         _scoreManager = ScoreManager.Instance;
         _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
         Invoke("Explode", 5); // グレネードが作られてから1.5秒後に爆発させる
+        StartCoroutine(startbait());
     }
- 
+
+    IEnumerator startbait()
+    {
+        yield return new WaitForFixedUpdate();
+        var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy")
+            .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= baitrange)
+            .ToList();
+        if (explodedChicken.Count == 0) yield break; // リストの要素が 0 の場合は何もしない
+
+        _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
+        _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
+
+        foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
+            chicken.GetComponent<Patrol>().Bait(gameObject);
+    }
     private void Update()
     {
         

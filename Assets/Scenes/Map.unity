@@ -2963,15 +2963,15 @@ PrefabInstance:
       objectReference: {fileID: 527650822}
     - target: {fileID: 2935120266308462134, guid: d62f18303b2076f4e803855f28a2d4a8, type: 3}
       propertyPath: maxEnemies
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2935120266308462134, guid: d62f18303b2076f4e803855f28a2d4a8, type: 3}
       propertyPath: maxSpawnInterval
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2935120266308462134, guid: d62f18303b2076f4e803855f28a2d4a8, type: 3}
       propertyPath: minSpawnInterval
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2935120266308462134, guid: d62f18303b2076f4e803855f28a2d4a8, type: 3}
       propertyPath: waypoints.Array.size

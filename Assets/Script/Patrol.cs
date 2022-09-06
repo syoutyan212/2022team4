@@ -32,9 +32,15 @@ public class Patrol : MonoBehaviour {
         GotoNextPoint();
 
         //追跡したいオブジェクトの名前を入れる
-        bait = GameObject.FindWithTag("Bait");
+        var _bait = GameObject.FindWithTag("Bait");
+        Bait(_bait);
     }
 
+    public void Bait(GameObject target)
+    {
+        bait = target;
+        tracking = true;
+    }
 
     void GotoNextPoint()
     {
@@ -57,8 +63,6 @@ public class Patrol : MonoBehaviour {
         
         if (tracking)
         {
-            bait = GameObject.FindWithTag("Bait");
-            
             if (bait == null)
             {
                 tracking = false;
@@ -77,6 +81,7 @@ public class Patrol : MonoBehaviour {
         }
         else
         {
+            distance = Vector3.Distance(this.transform.position, baitPos);
             //PlayerがtrackingRangeより近づいたら追跡開始
             if (distance < trackingRange)
                 tracking = true;
