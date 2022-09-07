@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Spawner
   - Bait
+  - c4
   layers:
   - Default
   - TransparentFX
