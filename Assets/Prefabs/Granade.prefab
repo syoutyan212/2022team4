@@ -116,6 +116,7 @@ MonoBehaviour:
   range: 10
   baitrange: 1000
   desroytime: 0.5
+  BombEffect: {fileID: 9179576976192970893, guid: f823896610e9f67489c419d73b641375, type: 3}
 --- !u!54 &6951805118078560355
 Rigidbody:
   m_ObjectHideFlags: 0

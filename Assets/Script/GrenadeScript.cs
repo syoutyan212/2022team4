@@ -7,11 +7,12 @@ public class GrenadeScript : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private float baitrange;
     [SerializeField] private float desroytime;
-
+    
+    public GameObject BombEffect;
     private ScoreManager _scoreManager;
     private SameTimeExplosionCount _sameTimeExplosionCount;
     private PlayerExplosionPoint _playerExplosionPoint;
-    
+
     private void Start()
     {
         _scoreManager = ScoreManager.Instance;
@@ -42,6 +43,7 @@ public class GrenadeScript : MonoBehaviour
 
     void Explode()
     {
+        GenerateEffect();
         // 爆発対象のチキンを取得
         var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy")
             .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= range)
@@ -76,6 +78,11 @@ public class GrenadeScript : MonoBehaviour
         if (playerRb != null)
         {
             playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
+        }
+        void GenerateEffect()
+        {
+            GameObject effect = Instantiate(BombEffect);
+            effect.transform.position = gameObject.transform.position;
         }
     }
 }

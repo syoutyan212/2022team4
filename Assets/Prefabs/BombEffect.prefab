@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 178829681902770667}
   - component: {fileID: 6127364278860511331}
   - component: {fileID: 5947977994962441117}
+  - component: {fileID: 6472546139909476372}
   m_Layer: 0
-  m_Name: Bomb Effect
+  m_Name: BombEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +118,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 2
-      minScalar: 1.5
+      minScalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -169,8 +170,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 2.9
+      scalar: 8
+      minScalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -285,8 +286,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2.89
-      minScalar: 0.8
+      scalar: 3
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -977,7 +978,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 214.5
+        scalar: 500
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1372,7 +1373,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.78226256, b: 0.3066038, a: 1}
+        key0: {r: 1, g: 0.33080575, b: 0, a: 1}
         key1: {r: 1, g: 0.78226256, b: 0.3066038, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1389,7 +1390,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 43369
+        atime1: 56090
         atime2: 0
         atime3: 0
         atime4: 0
@@ -4879,3 +4880,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6472546139909476372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179576976192970893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4654c9e60aa274a9e47404a56d1de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
