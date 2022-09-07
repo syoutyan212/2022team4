@@ -7,7 +7,7 @@ public class BoomEffect : MonoBehaviour
 {
     void Start()
     {
-        Invoke("EffectBoom",1.5f);
+        Invoke("EffectBoom",10f);
     }
 
     void EffectBoom()

@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
- 
+
 public class GrenadeScript : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private float baitrange;
     [SerializeField] private float desroytime;
-    
+
     public GameObject BombEffect;
     private ScoreManager _scoreManager;
     private SameTimeExplosionCount _sameTimeExplosionCount;
@@ -18,7 +19,7 @@ public class GrenadeScript : MonoBehaviour
         _scoreManager = ScoreManager.Instance;
         _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
         _playerExplosionPoint = GameObject.FindWithTag("Player").GetComponent<PlayerExplosionPoint>();
-        Invoke("Explode", 5); // グレネードが作られてから1.5秒後に爆発させる
+        Invoke("Explode", 5);
         StartCoroutine(startbait());
     }
 
@@ -36,9 +37,10 @@ public class GrenadeScript : MonoBehaviour
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
             chicken.GetComponent<Patrol>().Bait(gameObject);
     }
+
     private void Update()
     {
-        
+
     }
 
     void Explode()
@@ -49,7 +51,11 @@ public class GrenadeScript : MonoBehaviour
             .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= range)
             .ToList();
 
-        if (explodedChicken.Count == 0) return; // リストの要素が 0 の場合は何もしない
+        if (explodedChicken.Count == 0)
+        {
+            Destroy(gameObject);
+            return; // リストの要素が 0 の場合は何もしない
+        }
 
         _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
         // 同時爆発数分、爆発ポイントを加算
@@ -61,6 +67,7 @@ public class GrenadeScript : MonoBehaviour
         {
             _playerExplosionPoint.ExplosionPoint += explodedChicken.Count;
         }
+
         _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
 
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
@@ -70,6 +77,7 @@ public class GrenadeScript : MonoBehaviour
             {
                 rb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
                 Destroy(chicken, desroytime);
+                Destroy(gameObject);
             }
         }
 
@@ -79,10 +87,11 @@ public class GrenadeScript : MonoBehaviour
         {
             playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
         }
-        void GenerateEffect()
-        {
-            GameObject effect = Instantiate(BombEffect);
-            effect.transform.position = gameObject.transform.position;
-        }
+    }
+
+    void GenerateEffect()
+    {
+        GameObject effect = Instantiate(BombEffect);
+        effect.transform.position = gameObject.transform.position;
     }
 }
