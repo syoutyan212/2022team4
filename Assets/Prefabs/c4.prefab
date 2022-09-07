@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2416457955953991638}
   m_Layer: 0
   m_Name: c4
-  m_TagString: Untagged
+  m_TagString: c4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 20
   grenade: {fileID: 4421799569761837006}
+  range: 0
 --- !u!54 &2416457955953991638
 Rigidbody:
   m_ObjectHideFlags: 0
