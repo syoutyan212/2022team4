@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GrenadeScript : MonoBehaviour
 {
@@ -30,10 +31,7 @@ public class GrenadeScript : MonoBehaviour
             .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= baitrange)
             .ToList();
         if (explodedChicken.Count == 0) yield break; // リストの要素が 0 の場合は何もしない
-
-        _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
-        _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
-
+        
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
             chicken.GetComponent<Patrol>().Bait(gameObject);
     }
@@ -48,13 +46,23 @@ public class GrenadeScript : MonoBehaviour
         GenerateEffect();
         // 爆発対象のチキンを取得
         var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy")
-            .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= range)
+            .Where(chicken => Vector3.Distance(chicken.transform.position, transform.position) <= range &&
+                              !chicken.GetComponent<ChickenExplodedState>().IsExploded)
             .ToList();
 
+        // プレイヤーを吹っ飛ばす
+        var player = GameObject.FindGameObjectWithTag("Player");
+        var playerRb = player.GetComponent<Rigidbody>();
+        if (playerRb != null)
+        {
+            playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
+        }
+        
+        // リストの要素が 0 の場合は何もしない
         if (explodedChicken.Count == 0)
         {
             Destroy(gameObject);
-            return; // リストの要素が 0 の場合は何もしない
+            return;
         }
 
         _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
@@ -73,19 +81,18 @@ public class GrenadeScript : MonoBehaviour
         foreach (var chicken in explodedChicken) // 配列に入れた一つひとつのオブジェクト
         {
             var rb = chicken.GetComponent<Rigidbody>();
-            if (rb != null) // Rigidbodyがあれば、グレネードを中心とした爆発の力を加える
+            // Rigidbodyがあれば、グレネードを中心とした爆発の力を加える
+            if (rb != null)
             {
+                chicken.GetComponent<Patrol>().enabled = false;
+                chicken.GetComponent<RandomMove>().enabled = false;
+                chicken.GetComponent<NavMeshAgent>().enabled = false;
+                
+                chicken.GetComponent<ChickenExplodedState>().IsExploded = true;
                 rb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
                 Destroy(chicken, desroytime);
                 Destroy(gameObject);
             }
-        }
-
-        var player = GameObject.FindGameObjectWithTag("Player");
-        var playerRb = player.GetComponent<Rigidbody>();
-        if (playerRb != null)
-        {
-            playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
         }
     }
 

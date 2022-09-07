@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   central: {fileID: 0}
   spawnEnabled: 1
-  maxEnemies: 200
+  maxEnemies: 100
   minPositionX: -3
   maxPositonX: 3
   minSpawnInterval: 1
