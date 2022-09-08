@@ -7,7 +7,8 @@ public class ThrowGrenadeScript : MonoBehaviour
     public float thrust = 20f;
     public GameObject grenade;
     Rigidbody rb_grenade;
- 
+    public int shotlimit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,11 @@ public class ThrowGrenadeScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // マウスの左クリックをしたとき
         {
+            if (shotlimit < 1) return;
+
             rb_grenade = Instantiate(grenade, transform.position, transform.rotation).GetComponent<Rigidbody>(); // グレネードを生成
             rb_grenade.AddForce(Vector3.Lerp(transform.forward * 1.5f,transform.up, 0.5f) * thrust, ForceMode.Impulse); // グレネードに力を一度加える
+            shotlimit -= 1;
         }
     }
 }

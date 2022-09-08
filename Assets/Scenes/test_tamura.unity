@@ -1450,6 +1450,7 @@ MonoBehaviour:
   Player: {fileID: 1390390805}
   Camera: {fileID: 963194225}
   speed: 7
+  stoptime: 180
 --- !u!1001 &1062156939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2473,6 +2474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 20
   grenade: {fileID: 7478845402176862484, guid: d0fddd53c66ccb64788978347ab031e6, type: 3}
+  shotCount: 5
 --- !u!1 &1589035495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6867411025980310818, guid: dcd29493c298b6f47bd3ee1c3197f960, type: 3}
