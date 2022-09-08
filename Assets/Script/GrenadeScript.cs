@@ -65,7 +65,7 @@ public class GrenadeScript : MonoBehaviour
             return;
         }
 
-        _sameTimeExplosionCount.ShowText(explodedChicken.Count); // 同時爆発数を表示
+        _sameTimeExplosionCount.Show(explodedChicken.Count); // 同時爆発数を表示
         // 同時爆発数分、爆発ポイントを加算
         if (_playerExplosionPoint.ExplosionPoint + explodedChicken.Count >= PlayerExplosionPoint.MaxExplosionPoint)
         {
