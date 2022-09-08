@@ -10,13 +10,13 @@ public class c4explosion : MonoBehaviour
     public GameObject grenade;
     Rigidbody rb_grenade;
     [SerializeField] private float range;
+    [SerializeField] private float desroytime;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         rb_grenade = GetComponent<Rigidbody>();
         StartCoroutine(c4());
     }
@@ -29,14 +29,12 @@ public class c4explosion : MonoBehaviour
             rb_grenade = Instantiate(grenade, transform.position, transform.rotation).GetComponent<Rigidbody>();
             yield return new WaitForFixedUpdate();
             yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
-            rb_grenade.AddForce(Vector3.Lerp(transform.forward * 0.5f, -transform.up, 0.1f) * thrust, ForceMode.Impulse); // ƒOƒŒƒl[ƒh‚É—Í‚ğˆê“x‰Á‚¦‚é
+            rb_grenade.AddForce(Vector3.Lerp(transform.forward * 0.5f, -transform.up, 0.1f) * thrust, ForceMode.Impulse); // ï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½É—Í‚ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Invoke("Explode", 0.01f);
 
             yield return new WaitForFixedUpdate();
             Destroy(rb_grenade.gameObject);
-
         }
-
     }
 
     // Update is called once per frame
@@ -47,25 +45,31 @@ public class c4explosion : MonoBehaviour
 
     void Explode()
     {
-        // ”š”­‘ÎÛ‚Ìƒ`ƒLƒ“‚ğæ“¾
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ÎÛ‚Ìƒ`ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
         var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy")
         .Where(chicken => Vector3.Distance(chicken.transform.position, GameObject.FindGameObjectWithTag("c4").transform.position) <= range)
         .ToList();
-
-        if (explodedChicken.Count == 0) return; // ƒŠƒXƒg‚Ì—v‘f‚ª 0 ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
-
-
-        foreach (var chicken in explodedChicken) // ”z—ñ‚É“ü‚ê‚½ˆê‚Â‚Ğ‚Æ‚Â‚ÌƒIƒuƒWƒFƒNƒg
+        
+        var player = GameObject.FindGameObjectWithTag("Player");
+        var playerRb = player.GetComponent<Rigidbody>();
+        if (playerRb != null)
         {
-            var rb = chicken.GetComponent<Rigidbody>();
-            if (rb != null) // Rigidbody‚ª‚ ‚ê‚ÎAƒOƒŒƒl[ƒh‚ğ’†S‚Æ‚µ‚½”š”­‚Ì—Í‚ğ‰Á‚¦‚é
-            {
-                rb.AddExplosionForce(30f, GameObject.FindGameObjectWithTag("c4").transform.position, 15f, 5f, ForceMode.Impulse);
-
-            }
+            playerRb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
         }
 
+        if (explodedChicken.Count == 0) return; // ï¿½ï¿½ï¿½Xï¿½gï¿½Ì—vï¿½fï¿½ï¿½ 0 ï¿½Ìê‡ï¿½Í‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+        foreach (var chicken in explodedChicken) // ï¿½zï¿½ï¿½É“ï¿½ï¿½ê‚½ï¿½ï¿½Â‚Ğ‚Æ‚Â‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½g
+        {
+            var rb = chicken.GetComponent<Rigidbody>();
+            if (rb != null) // Rigidbodyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½ğ’†Sï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì—Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            {
+                rb.AddExplosionForce(30f, GameObject.FindGameObjectWithTag("c4").transform.position, 15f, 5f, ForceMode.Impulse);
+                chicken.GetComponent<Patrol>().enabled = false;
+                chicken.GetComponent<RandomMove>().enabled = false;
+                chicken.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                chicken.GetComponent<ChickenExplodedState>().IsExploded = true;
+                Destroy(chicken, desroytime);
+            }
+        }
     }
-
-
 }

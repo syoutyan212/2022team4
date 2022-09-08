@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8577423807813324738}
   - component: {fileID: 20971551692129654}
   - component: {fileID: 6792745293119190735}
-  - component: {fileID: -4443052585813710335}
   - component: {fileID: 2416457955953991638}
   m_Layer: 0
   m_Name: c4
@@ -99,21 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4443052585813710335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421799569761837006}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74ba2de3f856ae49a5cb0996d20ff99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 20
-  grenade: {fileID: 4421799569761837006}
-  range: 0
 --- !u!54 &2416457955953991638
 Rigidbody:
   m_ObjectHideFlags: 0
