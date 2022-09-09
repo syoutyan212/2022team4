@@ -3,7 +3,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class HiyokoGlavity : MonoBehaviour {
+public class HiyokoGlavity : MonoBehaviour 
+{
     public float accelerationScale;
 
     private void OnTriggerEnter(Collider other)
