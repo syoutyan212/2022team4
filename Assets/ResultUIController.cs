@@ -6,12 +6,60 @@ using UnityEngine.UI;
 
 public class ResultUIController : MonoBehaviour
 {
+    [SerializeField] private AudioClip chi;
+    [SerializeField] private AudioClip doo;
+    [SerializeField] private AudioClip piyopiyo;
+    [SerializeField] private AudioClip bgm;
+    
     [SerializeField] private Text resultText;
+    [SerializeField] private Text explosionCountText;
+    [SerializeField] private Text explosionSameCountText;
+    [SerializeField] private Text scoreText;
+
+    [SerializeField] private Button button;
     
     private IEnumerator Start()
     {
+        var audio = GetComponent<AudioSource>();
+        var model = GameObject.Find("ResultModel").GetComponent<ResultModel>();
+        
+        yield return new WaitForSeconds(3.0f);
         // リザルトタイトル出現
-        yield return resultText.DOFade(1.0f, 1.0f).SetEase(Ease.InQuart).WaitForCompletion();
+        audio.PlayOneShot(doo);
+        yield return resultText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
+        yield return new WaitForSeconds(1.0f);
+        // 総爆発数
+        audio.PlayOneShot(chi);
+        explosionCountText.text = $"爆発した数: {model.ExplosionCount}体";
+        yield return explosionCountText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
+        yield return new WaitForSeconds(1.0f);
+        
+        // 最高同時爆発数
+        audio.PlayOneShot(chi);
+        explosionSameCountText.text = $"同時爆発数: {model.ExplosionSameCount}体";
+        yield return explosionSameCountText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
+        yield return new WaitForSeconds(1.0f);
+        
+        // スコア
+        audio.PlayOneShot(doo);
+        scoreText.text = $"スコア: {model.Score}点";
+        yield return scoreText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
+        yield return new WaitForSeconds(1.0f);
+        
         RankingLoader.Instance.SendScoreAndShowRanking(100); // TODO 後で差し替え
+        yield return new WaitForSeconds(1.0f);
+        
+        button.gameObject.SetActive(true);
+
+        audio.clip = bgm;
+        audio.loop = true;
+        audio.Play();
+        
+        yield return new WaitForSeconds(0.5f);
+        audio.PlayOneShot(piyopiyo);
+        yield return new WaitForSeconds(1.0f);
+        audio.PlayOneShot(piyopiyo);
+        yield return new WaitForSeconds(1.0f);
+        audio.PlayOneShot(piyopiyo);
     }
 }
