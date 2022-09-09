@@ -6,6 +6,7 @@ public class jump2dan : MonoBehaviour
 {
     int jumpCount = 0;
     public Rigidbody rb;
+    public bool isground;
 
     void Update()
     {
@@ -15,7 +16,6 @@ public class jump2dan : MonoBehaviour
             rb.AddForce(0f,500f,0f);
             jumpCount++;
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
