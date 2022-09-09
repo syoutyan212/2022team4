@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Hiyokoboom : MonoBehaviour
 {
     [SerializeField] private float desroytime;
+    [SerializeField] private GameObject SHIFT;
     
     private ScoreManager _scoreManager;
     public GameObject bigBombEffect;
     
     void Start()
     {
+        SHIFT.SetActive(false);
         _scoreManager = ScoreManager.Instance;
     }
     
@@ -19,7 +22,7 @@ public class Hiyokoboom : MonoBehaviour
     {
         if (_scoreManager.Score >= 1000)
         {
-            Debug.Log("たまったよ");
+            SHIFT.SetActive(true);
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Invoke("Boomhiyoko", 15);
