@@ -10714,6 +10714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95782547c0dc142a7bdd1bdfec231c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  operatorSprites: []
+  operatorImage: {fileID: 0}
+  hukidashi: {fileID: 0}
+  hukidashiText: {fileID: 0}
 --- !u!114 &1871319855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12640,6 +12644,10 @@ PrefabInstance:
     - target: {fileID: 635020758886952617, guid: 83bddaacdcf36464694c4a15e39888be, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 635020758956691814, guid: 83bddaacdcf36464694c4a15e39888be, type: 3}
+      propertyPath: shotlimit
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83bddaacdcf36464694c4a15e39888be, type: 3}
