@@ -1712,6 +1712,10 @@ PrefabInstance:
       value: road2 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2781,6 +2785,10 @@ PrefabInstance:
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_Name
       value: road1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4458,8 +4466,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 113.30738, y: 192.66301, z: 16.106537}
-  m_Center: {x: 33.10996, y: 28.135826, z: 107.7}
+  m_Size: {x: 129.80226, y: 192.66301, z: 16.106537}
+  m_Center: {x: 33.77511, y: 28.135826, z: 107.7}
 --- !u!65 &682980617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4471,8 +4479,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 22.114517, y: 186.9, z: 112.687126}
-  m_Center: {x: 100.32571, y: 27.90208, z: 43.40511}
+  m_Size: {x: 22.114517, y: 186.9, z: 128.89322}
+  m_Center: {x: 100.32571, y: 27.902084, z: 43.154922}
 --- !u!65 &682980618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4484,8 +4492,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.278862, y: 191.17, z: 112.43065}
-  m_Center: {x: -31.87592, y: 27.801868, z: 43.21061}
+  m_Size: {x: 17.278862, y: 191.17, z: 127.745544}
+  m_Center: {x: -31.87592, y: 27.801872, z: 42.87668}
 --- !u!65 &682980619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4497,8 +4505,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 113.30738, y: 194, z: 16.106533}
-  m_Center: {x: 33.10996, y: 28.11734, z: -21.088346}
+  m_Size: {x: 131.7852, y: 194, z: 16.106533}
+  m_Center: {x: 34.57978, y: 28.11734, z: -21.088346}
 --- !u!65 &682980620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5898,6 +5906,10 @@ PrefabInstance:
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_Name
       value: road2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8006,9 +8018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74ba2de3f856ae49a5cb0996d20ff99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 20
+  thrust: 1
   grenade: {fileID: 4421799569761837006, guid: 969c7c6b07d3cde4e8434eeb261ed71e, type: 3}
-  range: 15
+  BombEffect: {fileID: 9179576976192970893, guid: f823896610e9f67489c419d73b641375, type: 3}
+  range: 5
   desroytime: 2
 --- !u!1001 &1065005707
 PrefabInstance:
@@ -8020,6 +8033,10 @@ PrefabInstance:
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_Name
       value: road2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9516,7 +9533,7 @@ GameObject:
   - component: {fileID: 1383490202}
   m_Layer: 0
   m_Name: Road
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -10121,6 +10138,10 @@ PrefabInstance:
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_Name
       value: road2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 1133791878262783603, guid: 5d01fbd589c6eb542ba764e2ba5d07a4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11070,6 +11091,10 @@ PrefabInstance:
       value: road1 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -11656,7 +11681,7 @@ MeshCollider:
   m_GameObject: {fileID: 1935962405}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -11739,6 +11764,10 @@ PrefabInstance:
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_Name
       value: road1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12562,6 +12591,10 @@ PrefabInstance:
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_Name
       value: road1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 2031520947116808067, guid: aa20547dfc1c8104e9a4bb855c15ca97, type: 3}
       propertyPath: m_StaticEditorFlags
