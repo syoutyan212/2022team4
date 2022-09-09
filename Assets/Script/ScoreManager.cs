@@ -4,7 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
     public int Score { get; set; }
-    private const int DEFAULT_SCORE = 100;
+    public static readonly int DEFAULT_SCORE = 100;
     
     private void Awake()
     {

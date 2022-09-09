@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerExplosionPoint : MonoBehaviour
 {
-    public static readonly int MaxExplosionPoint = 100;
+    public static readonly int MaxExplosionPoint = 1000;
     public int ExplosionPoint { get; set; }
+    
+    public void ResetExplosionPoint()
+    {
+        ExplosionPoint = 0;
+    }
 }
