@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -7,15 +8,20 @@ using UnityEngine.UIElements;
 public class Hiyokoboom : MonoBehaviour
 {
     [SerializeField] private float desroytime;
-    [SerializeField] private GameObject SHIFT;
-    
+
     private PlayerExplosionPoint _playerExplosionPoint;
     public GameObject bigBombEffect;
-    
+    private GameObject SHIFT;
+    private ScoreManager _scoreManager;
+    private SameTimeExplosionCount _sameTimeExplosionCount;
+
     void Start()
     {
-        SHIFT.SetActive(false);
+        _scoreManager = ScoreManager.Instance;
+        _sameTimeExplosionCount = GameObject.Find("Canvas").GetComponentInChildren<SameTimeExplosionCount>();
         _playerExplosionPoint = GameObject.FindWithTag("Player").GetComponent<PlayerExplosionPoint>();
+        SHIFT = GameObject.FindWithTag("SHIFT");
+        SHIFT.SetActive(false);
     }
     
     void Update()
@@ -35,7 +41,7 @@ public class Hiyokoboom : MonoBehaviour
 
     void Boomhiyoko()
     {
-        var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy");
+        var explodedChicken = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         foreach (var chicken in explodedChicken)
         {
             var rb = chicken.GetComponent<Rigidbody>();
@@ -43,6 +49,8 @@ public class Hiyokoboom : MonoBehaviour
             {
                 GenerateEffect();
                 rb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
+                _sameTimeExplosionCount.Show(explodedChicken.Count); // 同時爆発数を表示
+                _scoreManager.AddScore(explodedChicken.Count); // 点数を加える
                 Destroy(chicken, desroytime);
                 Destroy(this.gameObject);
             }
