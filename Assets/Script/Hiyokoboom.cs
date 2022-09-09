@@ -9,22 +9,23 @@ public class Hiyokoboom : MonoBehaviour
     [SerializeField] private float desroytime;
     [SerializeField] private GameObject SHIFT;
     
-    private ScoreManager _scoreManager;
+    private PlayerExplosionPoint _playerExplosionPoint;
     public GameObject bigBombEffect;
     
     void Start()
     {
         SHIFT.SetActive(false);
-        _scoreManager = ScoreManager.Instance;
+        _playerExplosionPoint = GameObject.FindWithTag("Player").GetComponent<PlayerExplosionPoint>();
     }
     
     void Update()
     {
-        if (_scoreManager.Score >= 1000)
+        if (_playerExplosionPoint.ExplosionPoint >= PlayerExplosionPoint.MaxExplosionPoint)
         {
             SHIFT.SetActive(true);
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                _playerExplosionPoint.ResetExplosionPoint();
                 Invoke("Boomhiyoko", 15);
                 GetComponent<BoxCollider>().enabled = true;
                 GetComponent<HiyokoPatrol>().enabled = false;

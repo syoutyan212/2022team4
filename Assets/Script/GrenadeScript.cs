@@ -73,7 +73,7 @@ public class GrenadeScript : MonoBehaviour
         }
         else
         {
-            _playerExplosionPoint.ExplosionPoint += explodedChicken.Count;
+            _playerExplosionPoint.ExplosionPoint += ScoreManager.DEFAULT_SCORE * explodedChicken.Count * explodedChicken.Count;
         }
 
         _scoreManager.AddScore(explodedChicken.Count); // 点数を加える

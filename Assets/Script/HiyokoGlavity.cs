@@ -14,6 +14,7 @@ public class HiyokoGlavity : MonoBehaviour
             other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             other.gameObject.GetComponent<Patrol>().enabled = false;
             other.gameObject.GetComponent<RandomMove>().enabled = false;
+            other.gameObject.GetComponent<BoxCollider>().isTrigger = true;
         }
     }
 
@@ -24,6 +25,7 @@ public class HiyokoGlavity : MonoBehaviour
             other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             other.gameObject.GetComponent<Patrol>().enabled = false;
             other.gameObject.GetComponent<RandomMove>().enabled = false;
+            other.gameObject.GetComponent<BoxCollider>().isTrigger = true;
             var direction = gameObject.transform.position - other.gameObject.transform.position;
             direction.Normalize();
 
