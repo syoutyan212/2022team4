@@ -51,7 +51,7 @@ public class ResultUIController : MonoBehaviour
         yield return scoreText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
         yield return new WaitForSeconds(1.0f);
         
-        RankingLoader.Instance.SendScoreAndShowRanking(100); // TODO 後で差し替え
+        RankingLoader.Instance.SendScoreAndShowRanking(model.Score);
         yield return new WaitForSeconds(1.0f);
         
         button.gameObject.SetActive(true);
