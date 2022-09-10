@@ -20,47 +20,52 @@ public class PlayerController : MonoBehaviour {
 
     }
 	
-    // Update is called once per frame
-    void Update () {
+    private void Update () {
 
-        stoptime -= Time.deltaTime;
-
-        if (stoptime > 0)
+        if (GameManager.Instance.IsGaming)
         {
-            float X_Rotation = Input.GetAxis("Mouse X");
-            float Y_Rotation = Input.GetAxis("Mouse Y");
-            PlayerTransform.transform.Rotate(0, X_Rotation, 0);
-            CameraTransform.transform.Rotate(-Y_Rotation, 0, 0);
+            stoptime -= Time.deltaTime;
+
+            if (stoptime > 0)
+            {
+                float X_Rotation = Input.GetAxis("Mouse X");
+                float Y_Rotation = Input.GetAxis("Mouse Y");
+                PlayerTransform.transform.Rotate(0, X_Rotation, 0);
+                CameraTransform.transform.Rotate(-Y_Rotation, 0, 0);
 
 
-            float angleDir = PlayerTransform.transform.eulerAngles.y * (Mathf.PI / 180.0f);
-            Vector3 dir1 = new Vector3(Mathf.Sin(angleDir), 0, Mathf.Cos(angleDir));
-            Vector3 dir2 = new Vector3(-Mathf.Cos(angleDir), 0, Mathf.Sin(angleDir));
+                float angleDir = PlayerTransform.transform.eulerAngles.y * (Mathf.PI / 180.0f);
+                Vector3 dir1 = new Vector3(Mathf.Sin(angleDir), 0, Mathf.Cos(angleDir));
+                Vector3 dir2 = new Vector3(-Mathf.Cos(angleDir), 0, Mathf.Sin(angleDir));
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                PlayerTransform.transform.position += dir1 * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                PlayerTransform.transform.position += dir2 * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                PlayerTransform.transform.position += -dir2 * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                PlayerTransform.transform.position += -dir1 * speed * Time.deltaTime;
-            }
-        }
-        
-        if (stoptime <= 0)
-        {
-            Time.timeScale = 0;
-            PlayerTransform.transform.Rotate(0, 0, 0);
-            CameraTransform.transform.Rotate(0, 0, 0);
+                if (Input.GetKey(KeyCode.W))
+                {
+                    PlayerTransform.transform.position += dir1 * speed * Time.deltaTime;
+                }
 
+                if (Input.GetKey(KeyCode.A))
+                {
+                    PlayerTransform.transform.position += dir2 * speed * Time.deltaTime;
+                }
+
+                if (Input.GetKey(KeyCode.D))
+                {
+                    PlayerTransform.transform.position += -dir2 * speed * Time.deltaTime;
+                }
+
+                if (Input.GetKey(KeyCode.S))
+                {
+                    PlayerTransform.transform.position += -dir1 * speed * Time.deltaTime;
+                }
+            }
+
+            if (stoptime <= 0)
+            {
+                Time.timeScale = 0;
+                PlayerTransform.transform.Rotate(0, 0, 0);
+                CameraTransform.transform.Rotate(0, 0, 0);
+
+            }
         }
     }
 }
