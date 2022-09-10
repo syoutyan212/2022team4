@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
-    public float countdown = 180.0f;
+    public float countdown = 90.0f;
     private Text timeText;
+    AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
+        clip = gameObject.GetComponent<AudioSource>().clip;
         timeText = GetComponent<Text>();
     }
 
@@ -21,7 +23,8 @@ public class Countdown : MonoBehaviour
 
         if (countdown <= 0)
         {
-            timeText.text = "時間になりました！";
+            timeText.text = "TIME OUT";
+            GetComponent<AudioSource>().PlayOneShot(clip);
         }
     }
 }
