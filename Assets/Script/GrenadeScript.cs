@@ -87,8 +87,8 @@ public class GrenadeScript : MonoBehaviour
                 chicken.GetComponent<Patrol>().enabled = false;
                 chicken.GetComponent<RandomMove>().enabled = false;
                 chicken.GetComponent<NavMeshAgent>().enabled = false;
-                
                 chicken.GetComponent<ChickenExplodedState>().IsExploded = true;
+                rb.drag = 0.0f;
                 rb.AddExplosionForce(30f, transform.position, 15f, 5f, ForceMode.Impulse);
                 Destroy(chicken, desroytime);
                 Destroy(gameObject);

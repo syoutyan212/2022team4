@@ -600,7 +600,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.7, z: 1.5}
+  m_Size: {x: 1, y: 1.7, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &702119558
 MonoBehaviour:
@@ -628,7 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desroytime: 2
-  SHIFT: {fileID: 0}
   bigBombEffect: {fileID: 8840884213819288944, guid: 1b5af85d94a020640932b4dd9fcce810, type: 3}
 --- !u!114 &882137933
 MonoBehaviour:

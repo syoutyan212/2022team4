@@ -423,8 +423,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   central: []
   destPoint: 0
-  trackingRange: 16
-  quitRange: 20
+  trackingRange: 8
+  quitRange: 10
   tracking: 1
 --- !u!114 &8219677851274674681
 MonoBehaviour:
