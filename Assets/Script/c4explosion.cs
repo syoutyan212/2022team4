@@ -22,18 +22,19 @@ public class c4explosion : MonoBehaviour
     IEnumerator c4()
     {
         while (true)
-            {
-                yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
-                rb_grenade = Instantiate(grenade, transform.position, transform.rotation).GetComponent<Rigidbody>();
-                yield return new WaitForFixedUpdate();
-                yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
-                rb_grenade.AddForce(Vector3.Lerp(transform.forward * 0.5f, -transform.up, 0.1f) * thrust, ForceMode.Impulse);
-                Invoke("Explode", 0.01f);
-                yield return new WaitForFixedUpdate();
-                Destroy(rb_grenade.gameObject);
-                
-                yield return new WaitForSeconds(3.5f);
-            }
+        {
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(1) && GameManager.Instance.IsGaming);
+            rb_grenade = Instantiate(grenade, transform.position, transform.rotation).GetComponent<Rigidbody>();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(1) && GameManager.Instance.IsGaming);
+            rb_grenade.AddForce(Vector3.Lerp(transform.forward * 0.5f, -transform.up, 0.1f) * thrust,
+                ForceMode.Impulse);
+            Invoke("Explode", 0.01f);
+            yield return new WaitForFixedUpdate();
+            Destroy(rb_grenade.gameObject);
+
+            yield return new WaitForSeconds(3.5f);
+        }
     }
     
 

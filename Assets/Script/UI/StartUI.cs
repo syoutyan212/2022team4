@@ -31,6 +31,7 @@ public class StartUI : MonoBehaviour
         _audioSource.PlayOneShot(don);
         _text.text = "DON!!";
         yield return _text.rectTransform.DOScale(Vector3.one * 2,  0.2f).WaitForCompletion();
+        GameManager.Instance.IsGaming = true;
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

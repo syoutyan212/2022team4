@@ -15,6 +15,8 @@ public class ThrowGrenadeScript : MonoBehaviour
  
     private void Update()
     {
+        if (!GameManager.Instance.IsGaming) return;
+        
         if (Input.GetMouseButtonDown(0)) // マウスの左クリックをしたとき
         {
             if (granadeCount < 1) return;
