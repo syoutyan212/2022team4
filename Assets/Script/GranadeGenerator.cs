@@ -7,7 +7,7 @@ public class GranadeGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject granadeItem;
     [SerializeField] private List<GranadeSpawnPoint> spawnPoints;
-
+    
     private const float IntervalSpawnTime = 5.0f;
     private float elapsedTime = 0.0f;
 

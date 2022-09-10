@@ -26,7 +26,7 @@ public class HiyokoGlavity : MonoBehaviour
             other.gameObject.GetComponent<Patrol>().enabled = false;
             other.gameObject.GetComponent<RandomMove>().enabled = false;
             other.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            var direction = gameObject.transform.position - other.gameObject.transform.position;
+            var direction = (gameObject.transform.position + Vector3.up * 30f) - other.gameObject.transform.position;
             direction.Normalize();
 
             other.GetComponent<Rigidbody>().AddForce(accelerationScale * direction, ForceMode.Acceleration);
