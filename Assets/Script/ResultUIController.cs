@@ -17,13 +17,18 @@ public class ResultUIController : MonoBehaviour
     [SerializeField] private Text scoreText;
 
     [SerializeField] private Button button;
+    private Image fade;
     
     private IEnumerator Start()
     {
         var audio = GetComponent<AudioSource>();
         var model = GameObject.Find("ResultModel").GetComponent<ResultModel>();
+        fade = GameObject.Find("FadeCanvas").GetComponentInChildren<Image>();
         
-        yield return new WaitForSeconds(3.0f);
+        fade.color = Color.black;
+        fade.raycastTarget = true;
+        yield return fade.DOFade(0.0f, 1.0f).WaitForCompletion();
+        
         // リザルトタイトル出現
         audio.PlayOneShot(doo);
         yield return resultText.DOFade(1.0f, 0.1f).SetEase(Ease.InQuart).WaitForCompletion();
@@ -50,6 +55,7 @@ public class ResultUIController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         
         button.gameObject.SetActive(true);
+        fade.raycastTarget = false;
 
         audio.clip = bgm;
         audio.loop = true;
