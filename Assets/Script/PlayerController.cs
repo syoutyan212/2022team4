@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Transform CameraTransform;
     // Use this for initialization
 
-    public float stoptime = 180.0f;
+    public float stoptime = 90.0f;
 
     void Start () {
 
