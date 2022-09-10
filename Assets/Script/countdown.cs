@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Countdown : MonoBehaviour
+public class countdown : MonoBehaviour
 {
-    public float countdown = 90.0f;
+    public float Countdown = 90.0f;
     private Text timeText;
     AudioClip clip;
     // Start is called before the first frame update
@@ -18,10 +18,10 @@ public class Countdown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;
-        timeText.text = countdown.ToString("f1") + "秒";
+        Countdown -= Time.deltaTime;
+        timeText.text = Countdown.ToString("f1") + "秒";
 
-        if (countdown <= 0)
+        if (Countdown <= 0)
         {
             timeText.text = "TIME OUT";
             GetComponent<AudioSource>().PlayOneShot(clip);
