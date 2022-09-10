@@ -4,6 +4,8 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
     public int Score { get; set; }
+    public int MaxSameExplosionCount { get; set; }
+    public int ExplosionCount { get; set; }
     public static readonly int DEFAULT_SCORE = 10;
     
     private void Awake()
@@ -19,6 +21,16 @@ public class ScoreManager : MonoBehaviour
     // (100 * 倒した数) * 倒した数
     public void AddScore(int explosionCount)
     {
-        Score += DEFAULT_SCORE * explosionCount * explosionCount;
+        if (MaxSameExplosionCount < explosionCount)
+        {
+            MaxSameExplosionCount = explosionCount;
+        }
+
+        ExplosionCount += explosionCount;
+        
+        if (GameManager.Instance.IsGaming)
+        {
+            Score += DEFAULT_SCORE * explosionCount * explosionCount;
+        }
     }
 }
