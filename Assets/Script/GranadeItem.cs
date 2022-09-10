@@ -9,6 +9,7 @@ public class GranadeItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponentInChildren<ThrowGrenadeScript>().IncreaseGranadeCount();
             Destroy(gameObject);
         }
     }
