@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1107183618045730950}
   m_Layer: 0
   m_Name: GranadeItem
-  m_TagString: Bait
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
