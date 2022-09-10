@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour {
                 Time.timeScale = 0;
                 PlayerTransform.transform.Rotate(0, 0, 0);
                 CameraTransform.transform.Rotate(0, 0, 0);
-
             }
         }
     }

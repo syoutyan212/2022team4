@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,10 @@ public class ChangeColorRainbow : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
+    }
+
+    private void OnDisable()
+    {
         keydown = false;
     }
 
@@ -18,8 +24,8 @@ public class ChangeColorRainbow : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || keydown == true)
         {
-            keydown = true;
             image.color = Color.gray;
+            keydown = true;
         }
     }
 }

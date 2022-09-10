@@ -8,6 +8,7 @@ public class dansuuhyoji : MonoBehaviour
     private Text dansuuText;
     private ThrowGrenadeScript grenadescript;
     private float grenadelimit;
+    private ThrowGrenadeScript shotlimit;
     
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class dansuuhyoji : MonoBehaviour
     {
         GameObject obj = GameObject.Find("Hand");
         grenadescript = obj.GetComponent<ThrowGrenadeScript>();
-        grenadelimit = grenadescript.shotlimit;
-        dansuuText.text = "c‚è’e”F" + grenadelimit.ToString();
+        //grenadelimit = grenadescript.shotlimit;
+        dansuuText.text = "ï¿½cï¿½ï¿½eï¿½ï¿½ï¿½F" + grenadelimit.ToString();
     }
 }

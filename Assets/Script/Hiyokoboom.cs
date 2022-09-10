@@ -32,7 +32,7 @@ public class Hiyokoboom : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _playerExplosionPoint.ResetExplosionPoint();
-                Invoke("Boomhiyoko", 15);
+                Invoke("Boomhiyoko", 10);
                 GetComponent<BoxCollider>().enabled = true;
                 GetComponent<HiyokoPatrol>().enabled = false;
             }
